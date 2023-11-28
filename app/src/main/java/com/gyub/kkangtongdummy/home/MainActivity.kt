@@ -112,7 +112,9 @@ fun HomeScreen() {
                     items(apps) { appState ->
                         val backGroundColor = if (appState.isEnable) Gray13 else Gray05
                         Button(
-                            onClick = {},
+                            onClick = {
+
+                            },
                             shape = RoundedCornerShape(10.dp),
                             colors = ButtonDefaults.buttonColors(containerColor = backGroundColor),
                             modifier = Modifier
