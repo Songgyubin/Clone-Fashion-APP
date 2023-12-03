@@ -12,10 +12,8 @@ import androidx.compose.runtime.Composable
  * @author   Gyul
  * @created  2023/11/28
  */
-class SecondWareScreen {
 
-    @Composable
-    fun Curation() {
-        Text(text = "SecondWare")
-    }
+@Composable
+fun SecondWareScreen() {
+    Text(text = "SecondWare")
 }

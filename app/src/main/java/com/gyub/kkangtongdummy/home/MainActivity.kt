@@ -1,4 +1,4 @@
-@file:OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3Api::class)
+@file:OptIn(ExperimentalMaterial3Api::class)
 
 package com.gyub.kkangtongdummy.home
 
@@ -33,7 +33,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.gyub.kkangtongdummy.R
+import com.gyub.kkangtongdummy.secondware.SecondWareScreen
 import com.gyub.kkangtongdummy.ui.theme.Gray05
 import com.gyub.kkangtongdummy.ui.theme.Gray13
 import com.gyub.kkangtongdummy.ui.theme.KkangTongDummyTheme
@@ -51,8 +56,14 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             KkangTongDummyTheme {
+                val navController = rememberNavController()
+
                 Surface(modifier = Modifier.fillMaxSize(), color = White) {
-                    HomeScreen()
+
+                    NavHost(navController, startDestination = Apps.MAIN.appName) {
+                        composable(Apps.MAIN.appName) { HomeScreen(navController) }
+                        composable(Apps.SECOND_WARE.appName) { SecondWareScreen() }
+                    }
                 }
             }
         }
@@ -62,11 +73,11 @@ class MainActivity : ComponentActivity() {
 @Preview
 @Composable
 fun HomeScreenPreview() {
-    HomeScreen()
+//    HomeScreen()
 }
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(navController:NavHostController) {
     val apps = remember {
         listOf(
             AppViewState("세컨웨어", true),
@@ -82,7 +93,7 @@ fun HomeScreen() {
     Scaffold(
         topBar = { HomeTopAppBar() }
     ) { innerPadding ->
-        HomeContent(innerPadding, apps)
+        HomeContent(innerPadding, apps,navController)
     }
 }
 
@@ -106,25 +117,25 @@ fun HomeTopAppBar() {
 }
 
 @Composable
-fun HomeContent(innerPaddings: PaddingValues, apps: List<AppViewState>) {
+fun HomeContent(innerPaddings: PaddingValues, apps: List<AppViewState>, navController: NavHostController) {
     Box(modifier = Modifier.padding(innerPaddings)) {
         LazyVerticalGrid(
             columns = GridCells.Fixed(3),
             contentPadding = PaddingValues(3.dp)
         ) {
             items(apps) { appState ->
-                AppGridItem(appState)
+                AppGridItem(appState, navController)
             }
         }
     }
 }
 
 @Composable
-fun AppGridItem(appState: AppViewState) {
+fun AppGridItem(appState: AppViewState, navController: NavHostController) {
     val backGroundColor = if (appState.isEnable) Gray13 else Gray05
     Button(
         onClick = {
-            // Handle click
+            navController.navigate(Apps.SECOND_WARE.appName)
         },
         shape = RoundedCornerShape(10.dp),
         colors = ButtonDefaults.buttonColors(containerColor = backGroundColor),
@@ -140,7 +151,7 @@ fun AppGridItem(appState: AppViewState) {
     }
 }
 
-enum class Apps(appName: String) {
+enum class Apps(val appName: String) {
     MAIN("main"),
     SECOND_WARE("SecondWare"),
 }
