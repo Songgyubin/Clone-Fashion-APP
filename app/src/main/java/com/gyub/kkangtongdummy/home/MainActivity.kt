@@ -1,4 +1,4 @@
-@file:OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3Api::class)
+@file:OptIn(ExperimentalMaterial3Api::class)
 
 package com.gyub.kkangtongdummy.home
 
@@ -7,7 +7,6 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -27,7 +26,6 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
@@ -35,7 +33,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.gyub.kkangtongdummy.R
+import com.gyub.kkangtongdummy.secondware.SecondWareScreen
 import com.gyub.kkangtongdummy.ui.theme.Gray05
 import com.gyub.kkangtongdummy.ui.theme.Gray13
 import com.gyub.kkangtongdummy.ui.theme.KkangTongDummyTheme
@@ -53,8 +56,14 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             KkangTongDummyTheme {
+                val navController = rememberNavController()
+
                 Surface(modifier = Modifier.fillMaxSize(), color = White) {
-                    HomeScreen()
+
+                    NavHost(navController, startDestination = Apps.MAIN.appName) {
+                        composable(Apps.MAIN.appName) { HomeScreen(navController) }
+                        composable(Apps.SECOND_WARE.appName) { SecondWareScreen() }
+                    }
                 }
             }
         }
@@ -64,11 +73,11 @@ class MainActivity : ComponentActivity() {
 @Preview
 @Composable
 fun HomeScreenPreview() {
-    HomeScreen()
+//    HomeScreen()
 }
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(navController:NavHostController) {
     val apps = remember {
         listOf(
             AppViewState("세컨웨어", true),
@@ -81,55 +90,70 @@ fun HomeScreen() {
             AppViewState("Comming Soon", false),
         )
     }
-
     Scaffold(
-        topBar = {
-            TopAppBar(
-                title = {
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.Center
-                    ) {
-                        Text(
-                            text = stringResource(R.string.title_home),
-                            color = Color.White,
-                            modifier = Modifier.padding(top = 5.dp)
-                        )
-                    }
+        topBar = { HomeTopAppBar() }
+    ) { innerPadding ->
+        HomeContent(innerPadding, apps,navController)
+    }
+}
 
-                },
-            )
-        }
-    ) { paddingValues ->
-        Box(
-            modifier = Modifier.padding(paddingValues)
+@Composable
+fun HomeTopAppBar() {
+    TopAppBar(
+        title = {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 5.dp),
+                horizontalArrangement = Arrangement.Center
+            ) {
+                Text(
+                    text = stringResource(R.string.title_home),
+                    color = Color.White
+                )
+            }
+        },
+    )
+}
+
+@Composable
+fun HomeContent(innerPaddings: PaddingValues, apps: List<AppViewState>, navController: NavHostController) {
+    Box(modifier = Modifier.padding(innerPaddings)) {
+        LazyVerticalGrid(
+            columns = GridCells.Fixed(3),
+            contentPadding = PaddingValues(3.dp)
         ) {
-            Column {
-                LazyVerticalGrid(
-                    columns = GridCells.Fixed(3),
-                    contentPadding = PaddingValues(3.dp),
-                ) {
-                    items(apps) { appState ->
-                        val backGroundColor = if (appState.isEnable) Gray13 else Gray05
-                        Button(
-                            onClick = {},
-                            shape = RoundedCornerShape(10.dp),
-                            colors = ButtonDefaults.buttonColors(containerColor = backGroundColor),
-                            modifier = Modifier
-                                .size(100.dp)
-                                .padding(10.dp)
-                        ) {
-                            Text(
-                                text = appState.appName,
-                                textAlign = TextAlign.Center,
-                                fontSize = 12.sp
-                            )
-                        }
-                    }
-                }
+            items(apps) { appState ->
+                AppGridItem(appState, navController)
             }
         }
     }
+}
+
+@Composable
+fun AppGridItem(appState: AppViewState, navController: NavHostController) {
+    val backGroundColor = if (appState.isEnable) Gray13 else Gray05
+    Button(
+        onClick = {
+            navController.navigate(Apps.SECOND_WARE.appName)
+        },
+        shape = RoundedCornerShape(10.dp),
+        colors = ButtonDefaults.buttonColors(containerColor = backGroundColor),
+        modifier = Modifier
+            .size(100.dp)
+            .padding(10.dp)
+    ) {
+        Text(
+            text = appState.appName,
+            textAlign = TextAlign.Center,
+            fontSize = 12.sp
+        )
+    }
+}
+
+enum class Apps(val appName: String) {
+    MAIN("main"),
+    SECOND_WARE("SecondWare"),
 }
 
 data class AppViewState(
