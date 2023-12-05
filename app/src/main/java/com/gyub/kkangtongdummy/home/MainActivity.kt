@@ -39,9 +39,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.gyub.kkangtongdummy.R
 import com.gyub.kkangtongdummy.secondware.SecondWareScreen
-import com.gyub.kkangtongdummy.ui.theme.Gray05
-import com.gyub.kkangtongdummy.ui.theme.Gray13
 import com.gyub.kkangtongdummy.ui.theme.KkangTongDummyTheme
+import com.gyub.kkangtongdummy.ui.theme.SdsGray05
+import com.gyub.kkangtongdummy.ui.theme.SdsGray13
 import com.gyub.kkangtongdummy.ui.theme.White
 
 
@@ -77,7 +77,7 @@ fun HomeScreenPreview() {
 }
 
 @Composable
-fun HomeScreen(navController:NavHostController) {
+fun HomeScreen(navController: NavHostController) {
     val apps = remember {
         listOf(
             AppViewState("세컨웨어", true),
@@ -93,7 +93,7 @@ fun HomeScreen(navController:NavHostController) {
     Scaffold(
         topBar = { HomeTopAppBar() }
     ) { innerPadding ->
-        HomeContent(innerPadding, apps,navController)
+        HomeContent(innerPadding, apps, navController)
     }
 }
 
@@ -132,7 +132,7 @@ fun HomeContent(innerPaddings: PaddingValues, apps: List<AppViewState>, navContr
 
 @Composable
 fun AppGridItem(appState: AppViewState, navController: NavHostController) {
-    val backGroundColor = if (appState.isEnable) Gray13 else Gray05
+    val backGroundColor = if (appState.isEnable) SdsGray13 else SdsGray05
     Button(
         onClick = {
             navController.navigate(Apps.SECOND_WARE.appName)
