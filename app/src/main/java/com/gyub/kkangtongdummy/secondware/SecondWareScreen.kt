@@ -3,6 +3,7 @@ package com.gyub.kkangtongdummy.secondware
 import android.content.Context
 import android.widget.Toast
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -17,6 +18,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -60,31 +62,48 @@ fun CurationItemList() {
 @Preview
 @Composable
 fun CurationItemPreview() {
-    CurationItemImage()
+    CurationCardItem()
 }
 
 @Composable
-fun CurationItemImage() {
-    Card {
-        Box {
-            val itemImageModifier = Modifier
-                .width(174.dp)
-                .height(154.dp)
+fun CurationCardItem() {
+    Card(
+        modifier = Modifier
+            .width(174.dp)
+    ) {
+        Column {
+            Box {
+                val itemImageModifier = Modifier
+                    .fillMaxWidth()
+                    .height(154.dp)
 
-            Image(
-                modifier = itemImageModifier,
-                contentDescription = "curationItemImage",
-                painter = painterResource(id = R.drawable.sds_img_sample_item),
-                contentScale = ContentScale.Crop
-            )
-            val wishIconModifier = Modifier.align(Alignment.BottomEnd)
+                Image(
+                    modifier = itemImageModifier,
+                    contentDescription = "curationItemImage",
+                    painter = painterResource(id = R.drawable.sds_img_sample_item),
+                    contentScale = ContentScale.Crop
+                )
+                val wishIconModifier = Modifier.align(Alignment.BottomEnd)
 
-            Image(
-                modifier = wishIconModifier
-                    .padding(10.dp),
-                painter = painterResource(id = R.drawable.sds_ico_heart_wish_normal_18),
-                contentDescription = "wishIcon"
+                Image(
+                    modifier = wishIconModifier
+                        .padding(10.dp),
+                    painter = painterResource(id = R.drawable.sds_ico_heart_wish_normal_18),
+                    contentDescription = "wishIcon"
+                )
+            }
+            Text(
+                text = "Nike", modifier = Modifier
+                    .background(Color.White)
+                    .padding(top = 6.dp)
+                    .fillMaxWidth()
             )
+            Text(
+                text = "15,000원", modifier = Modifier
+                    .background(Color.White)
+                    .fillMaxWidth()
+            )
+
         }
     }
 }
