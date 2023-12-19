@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">KkangTongDummy</string>
     <string name="title_home">홈</string>
+    <string name="prefix_curation_title">혹시</string>
+    <string name="view_all">전체 보기 ></string>
+    <string name="national_geographic">네셔널지오그래픽</string>
+    <string name="are_you_looking_for">찾으시나요?</string>
 </resources>
