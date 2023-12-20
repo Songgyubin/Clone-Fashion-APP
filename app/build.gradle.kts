@@ -1,4 +1,5 @@
 plugins {
+    id("dagger.hilt.android.plugin")
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
 }
@@ -40,10 +41,13 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = "1.4.3"
     }
-    packaging {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-        }
+
+    packaging.resources {
+        // Multiple dependency bring these files in. Exclude them to enable
+        // our test APK to build (has no effect on our AARs)
+        excludes += "/META-INF/AL2.0"
+        excludes += "/META-INF/LGPL2.1"
+        excludes += "META-INF/gradle/incremental.annotation.processors"
     }
 }
 
@@ -65,6 +69,9 @@ dependencies {
     implementation(libs.retrofit2.converter.gson)
     implementation(libs.retrofit2.jackson)
     implementation(libs.okhttp3.logging.interceptor)
+
+    implementation(libs.dagger.hilt)
+    implementation(libs.dagger.hilt.compiler)
 
     testImplementation(libs.test.junit)
     androidTestImplementation(libs.android.test.androidx.ext.junit)
