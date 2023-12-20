@@ -1,4 +1,4 @@
-package com.gyub.kkangtongdummy.secondware
+package com.gyub.kkangtongdummy.secondware.ui
 
 import android.content.Context
 import android.widget.Toast
