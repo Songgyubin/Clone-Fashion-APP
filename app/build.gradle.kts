@@ -38,7 +38,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.7"
+        kotlinCompilerExtensionVersion = "1.4.3"
     }
     packaging {
         resources {
@@ -48,22 +48,32 @@ android {
 }
 
 dependencies {
-    implementation(platform("androidx.compose:compose-bom:2023.05.01"))
+    val composeBom = platform(libs.androidx.compose.bom)
+    implementation(composeBom)
 
-    implementation("androidx.core:core-ktx:1.10.0")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
-    implementation("androidx.activity:activity-compose:1.7.2")
-    implementation("androidx.compose.ui:ui")
-    implementation("androidx.compose.ui:ui-graphics")
-    implementation("androidx.compose.ui:ui-tooling-preview")
-    implementation("androidx.compose.material3:material3")
-    implementation("androidx.navigation:navigation-compose:2.5.3")
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.compose.ui)
+    implementation(libs.androidx.compose.ui.graphics)
+    implementation(libs.androidx.compose.ui.tooling.preivew)
+    implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.navigation.compose)
 
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-    androidTestImplementation(platform("androidx.compose:compose-bom:2023.03.00"))
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
-    debugImplementation("androidx.compose.ui:ui-tooling")
-    debugImplementation("androidx.compose.ui:ui-test-manifest")
+    implementation(libs.okhttp3)
+    implementation(libs.retrofit2)
+    implementation(libs.retrofit2.converter.gson)
+    implementation(libs.retrofit2.jackson)
+    implementation(libs.okhttp3.logging.interceptor)
+
+    testImplementation(libs.test.junit)
+    androidTestImplementation(libs.android.test.androidx.ext.junit)
+    androidTestImplementation(libs.android.test.androidx.espresso.core)
+
+    val testComposeBom = platform(libs.android.test.androidx.compose.bom)
+    androidTestImplementation(testComposeBom)
+    androidTestImplementation(libs.android.test.androidx.espresso.core)
+
+    debugImplementation(libs.debug.androidx.compose.ui.tooling)
+    debugImplementation(libs.debug.androidx.compose.ui.test.manifest)
 }
