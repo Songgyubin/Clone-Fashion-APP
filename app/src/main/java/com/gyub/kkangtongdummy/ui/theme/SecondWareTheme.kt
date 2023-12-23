@@ -1,6 +1,3 @@
-/*
- * Copyright ⓒ 2011 HelloMarket Inc. All Rights Reserved.
- */
 package com.gyub.kkangtongdummy.ui.theme
 
 import android.app.Activity

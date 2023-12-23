@@ -38,7 +38,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.gyub.kkangtongdummy.R
-import com.gyub.kkangtongdummy.secondware.SecondWareScreen
+import com.gyub.kkangtongdummy.secondware.ui.SecondWareScreen
 import com.gyub.kkangtongdummy.ui.theme.KkangTongDummyTheme
 import com.gyub.kkangtongdummy.ui.theme.SdsGray05
 import com.gyub.kkangtongdummy.ui.theme.SdsGray13
