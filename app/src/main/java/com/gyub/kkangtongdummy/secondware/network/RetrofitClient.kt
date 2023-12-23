@@ -59,7 +59,7 @@ object RetrofitClient {
                     objectMapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false)
                     val converter = JacksonConverterFactory.create(objectMapper)
                     gRetrofitClient = Retrofit.Builder()
-                        .baseUrl(ApiUrl.BASE_URL)
+                        .baseUrl(ApiInfo.BASE_URL)
                         .client(okClient)
                         .addConverterFactory(converter)
                         .build()

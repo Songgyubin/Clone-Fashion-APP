@@ -2,7 +2,7 @@ package com.gyub.kkangtongdummy.secondware.di
 
 import android.util.Log
 import com.google.gson.Gson
-import com.gyub.kkangtongdummy.secondware.network.ApiUrl.BASE_URL
+import com.gyub.kkangtongdummy.secondware.network.ApiInfo.BASE_URL
 import com.gyub.kkangtongdummy.secondware.network.NetworkUtil
 import dagger.Module
 import dagger.Provides
