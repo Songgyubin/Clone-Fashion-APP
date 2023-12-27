@@ -1,4 +1,4 @@
-package com.gyub.kkangtongdummy.secondware.data
+package com.gyub.kkangtongdummy.secondwear.data
 
 import javax.inject.Inject
 

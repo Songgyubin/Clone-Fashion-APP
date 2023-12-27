@@ -1,4 +1,4 @@
-package com.gyub.kkangtongdummy.secondware.ui
+package com.gyub.kkangtongdummy.secondwear.ui
 
 import android.content.Context
 import android.widget.Toast
@@ -36,7 +36,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.gyub.kkangtongdummy.R
 import com.gyub.kkangtongdummy.ui.theme.SdsBlue05
-import com.gyub.kkangtongdummy.ui.theme.SecondWareTheme
+import com.gyub.kkangtongdummy.ui.theme.SecondWearTheme
 
 /**
  * 세컨웨어 앱
@@ -45,8 +45,8 @@ import com.gyub.kkangtongdummy.ui.theme.SecondWareTheme
  * @created  2023/11/28
  */
 @Composable
-fun SecondWareScreen() {
-    SecondWareTheme {
+fun SecondWearScreen() {
+    SecondWearTheme {
         Surface {
             CurationItemGroup()
         }
@@ -54,7 +54,7 @@ fun SecondWareScreen() {
 }
 
 @Composable
-fun SecondWareMain() {
+fun SecondWearMain() {
 
 }
 

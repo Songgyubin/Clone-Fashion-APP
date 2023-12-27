@@ -1,4 +1,4 @@
-package com.gyub.kkangtongdummy.secondware.network
+package com.gyub.kkangtongdummy.secondwear.network
 
 import android.util.Log
 import com.fasterxml.jackson.annotation.JsonAutoDetect

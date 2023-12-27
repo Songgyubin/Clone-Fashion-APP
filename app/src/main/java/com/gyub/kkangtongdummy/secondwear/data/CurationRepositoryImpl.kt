@@ -1,10 +1,10 @@
 /*
  * Copyright ⓒ 2011 HelloMarket Inc. All Rights Reserved.
  */
-package com.gyub.kkangtongdummy.secondware.data
+package com.gyub.kkangtongdummy.secondwear.data
 
-import com.gyub.kkangtongdummy.secondware.domain.CurationItemsEntity
-import com.gyub.kkangtongdummy.secondware.domain.CurationRepository
+import com.gyub.kkangtongdummy.secondwear.domain.CurationItemsEntity
+import com.gyub.kkangtongdummy.secondwear.domain.CurationRepository
 import javax.inject.Inject
 import javax.inject.Singleton
 

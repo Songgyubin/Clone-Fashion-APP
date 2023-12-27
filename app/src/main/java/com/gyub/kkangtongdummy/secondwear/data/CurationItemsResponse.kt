@@ -1,6 +1,6 @@
-package com.gyub.kkangtongdummy.secondware.data
+package com.gyub.kkangtongdummy.secondwear.data
 
-import com.gyub.kkangtongdummy.secondware.domain.CurationItemsEntity
+import com.gyub.kkangtongdummy.secondwear.domain.CurationItemsEntity
 
 /**
  * 큐레이션 아이템 Response

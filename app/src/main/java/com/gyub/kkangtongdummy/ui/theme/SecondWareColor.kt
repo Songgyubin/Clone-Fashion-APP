@@ -3,7 +3,7 @@ package com.gyub.kkangtongdummy.ui.theme
 import androidx.compose.ui.graphics.Color
 
 /**
- * SecondWare Color
+ * SecondWear Color
  *
  * @author   Gyul
  * @created  2023/12/05

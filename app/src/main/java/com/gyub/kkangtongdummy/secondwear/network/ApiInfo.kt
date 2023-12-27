@@ -1,4 +1,4 @@
-package com.gyub.kkangtongdummy.secondware.network
+package com.gyub.kkangtongdummy.secondwear.network
 
 object ApiInfo {
     const val VERSION = "/v1"

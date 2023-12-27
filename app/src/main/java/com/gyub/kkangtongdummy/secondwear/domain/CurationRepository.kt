@@ -1,4 +1,4 @@
-package com.gyub.kkangtongdummy.secondware.domain
+package com.gyub.kkangtongdummy.secondwear.domain
 
 /**
  * 큐레이션 Repository

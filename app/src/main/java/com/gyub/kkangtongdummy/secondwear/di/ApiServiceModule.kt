@@ -1,6 +1,6 @@
-package com.gyub.kkangtongdummy.secondware.di
+package com.gyub.kkangtongdummy.secondwear.di
 
-import com.gyub.kkangtongdummy.secondware.data.CurationService
+import com.gyub.kkangtongdummy.secondwear.data.CurationService
 import dagger.Provides
 import retrofit2.Retrofit
 import javax.inject.Singleton

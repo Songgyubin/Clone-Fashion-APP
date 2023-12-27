@@ -38,7 +38,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.gyub.kkangtongdummy.R
-import com.gyub.kkangtongdummy.secondware.ui.SecondWareScreen
+import com.gyub.kkangtongdummy.secondwear.ui.SecondWearScreen
 import com.gyub.kkangtongdummy.ui.theme.KkangTongDummyTheme
 import com.gyub.kkangtongdummy.ui.theme.SdsGray05
 import com.gyub.kkangtongdummy.ui.theme.SdsGray13
@@ -62,7 +62,7 @@ class MainActivity : ComponentActivity() {
 
                     NavHost(navController, startDestination = Apps.MAIN.appName) {
                         composable(Apps.MAIN.appName) { HomeScreen(navController) }
-                        composable(Apps.SECOND_WARE.appName) { SecondWareScreen() }
+                        composable(Apps.SECOND_WARE.appName) { SecondWearScreen() }
                     }
                 }
             }
@@ -153,7 +153,7 @@ fun AppGridItem(appState: AppViewState, navController: NavHostController) {
 
 enum class Apps(val appName: String) {
     MAIN("main"),
-    SECOND_WARE("SecondWare"),
+    SECOND_WARE("SecondWear"),
 }
 
 data class AppViewState(
