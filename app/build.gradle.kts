@@ -1,5 +1,6 @@
+import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
+
 plugins {
-    id("dagger.hilt.android.plugin")
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
 }
@@ -14,6 +15,7 @@ android {
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"
+        multiDexEnabled = true
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -63,6 +65,7 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling.preivew)
     implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.navigation.compose)
+    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
 
     implementation(libs.okhttp3)
     implementation(libs.retrofit2)
