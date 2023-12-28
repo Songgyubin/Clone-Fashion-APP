@@ -1,9 +1,9 @@
 /*
  * Copyright ⓒ 2011 HelloMarket Inc. All Rights Reserved.
  */
-package com.gyub.kkangtongdummy.secondware.domain
+package com.gyub.kkangtongdummy.secondwear.domain
 
-import com.gyub.kkangtongdummy.secondware.di.IoDispatcher
+import com.gyub.kkangtongdummy.secondwear.di.IoDispatcher
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -22,7 +22,7 @@ constructor(
     private val curationRepository: CurationRepository,
     @IoDispatcher private val ioDispatcher: CoroutineDispatcher
 ) {
-    operator fun invoke(): Flow<CurationItemsEntity> = flow {
+    operator fun invoke(): Flow<List<CurationItemEntity>> = flow {
         val item = curationRepository.getCurationItems()
         emit(item)
     }.flowOn(ioDispatcher)

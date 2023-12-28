@@ -1,6 +1,6 @@
-package com.gyub.kkangtongdummy.secondware.data
+package com.gyub.kkangtongdummy.secondwear.data
 
-import com.gyub.kkangtongdummy.secondware.network.ApiInfo
+import com.gyub.kkangtongdummy.secondwear.network.ApiInfo
 import retrofit2.http.GET
 
 /**
@@ -17,5 +17,5 @@ interface CurationService {
      * @return 큐레이션 아이템
      */
     @GET("${ApiInfo.VERSION}/curation/items")
-    suspend fun getCurationItems(): CurationItemsResponse
+    suspend fun getCurationItems(): List<CurationItemResponse>
 }

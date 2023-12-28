@@ -1,4 +1,4 @@
-package com.gyub.kkangtongdummy.secondware.di
+package com.gyub.kkangtongdummy.secondwear.di
 
 import javax.inject.Qualifier
 

@@ -1,4 +1,4 @@
-package com.gyub.kkangtongdummy.secondware.network
+package com.gyub.kkangtongdummy.secondwear.network
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder

@@ -1,9 +1,9 @@
-package com.gyub.kkangtongdummy.secondware.di
+package com.gyub.kkangtongdummy.secondwear.di
 
 import android.util.Log
 import com.google.gson.Gson
-import com.gyub.kkangtongdummy.secondware.network.ApiInfo.BASE_URL
-import com.gyub.kkangtongdummy.secondware.network.NetworkUtil
+import com.gyub.kkangtongdummy.secondwear.network.ApiInfo.BASE_URL
+import com.gyub.kkangtongdummy.secondwear.network.NetworkUtil
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -24,7 +24,7 @@ object NetworkModule {
     @Named("RetrofitInterceptor")
     fun provideRetrofitInterceptor(): HttpLoggingInterceptor {
         return HttpLoggingInterceptor { message ->
-            Log.d("SecondWare", "### Retrofit -- ${NetworkUtil.getPrettyLogs(message)}")
+            Log.d("SecondWear", "### Retrofit -- ${NetworkUtil.getPrettyLogs(message)}")
         }
     }
 

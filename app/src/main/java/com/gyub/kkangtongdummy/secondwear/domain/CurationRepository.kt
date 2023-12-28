@@ -1,4 +1,4 @@
-package com.gyub.kkangtongdummy.secondware.domain
+package com.gyub.kkangtongdummy.secondwear.domain
 
 /**
  * 큐레이션 Repository
@@ -13,5 +13,5 @@ interface CurationRepository {
      *
      * @return 큐레이션 아이템
      */
-    suspend fun getCurationItems(): CurationItemsEntity
+    suspend fun getCurationItems(): List<CurationItemEntity>
 }

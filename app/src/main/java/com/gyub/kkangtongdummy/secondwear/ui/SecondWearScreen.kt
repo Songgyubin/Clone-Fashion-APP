@@ -1,4 +1,4 @@
-package com.gyub.kkangtongdummy.secondware.ui
+package com.gyub.kkangtongdummy.secondwear.ui
 
 import android.content.Context
 import android.widget.Toast
@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -34,9 +35,12 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.gyub.kkangtongdummy.R
+import com.gyub.kkangtongdummy.secondwear.model.CurationItemUiModel
 import com.gyub.kkangtongdummy.ui.theme.SdsBlue05
-import com.gyub.kkangtongdummy.ui.theme.SecondWareTheme
+import com.gyub.kkangtongdummy.ui.theme.SecondWearTheme
+import com.gyub.kkangtongdummy.util.extension.toFormattedPriceString
 
 /**
  * 세컨웨어 앱
@@ -45,8 +49,8 @@ import com.gyub.kkangtongdummy.ui.theme.SecondWareTheme
  * @created  2023/11/28
  */
 @Composable
-fun SecondWareScreen() {
-    SecondWareTheme {
+fun SecondWearScreen() {
+    SecondWearTheme {
         Surface {
             CurationItemGroup()
         }
@@ -54,7 +58,7 @@ fun SecondWareScreen() {
 }
 
 @Composable
-fun SecondWareMain() {
+fun SecondWearMain() {
 
 }
 
@@ -82,7 +86,9 @@ fun CurationItemListPreview() {
 }
 
 @Composable
-fun CurationItemList() {
+fun CurationItemList(
+    secondWearViewModel: SecondWearViewModel = viewModel()
+) {
     LazyHorizontalGrid(
         rows = GridCells.Fixed(2),
         contentPadding = PaddingValues(start = 20.dp, end = 20.dp),
@@ -92,14 +98,18 @@ fun CurationItemList() {
             .fillMaxWidth()
             .height(curationCardItemHeight * 2 + 14.dp)
     ) {
-        items(20) {
-            CurationCardItem()
+        items(secondWearViewModel.curationItem.value) {
+            CurationCardItem(it)
         }
     }
 }
 
 @Composable
-fun CurationCardItem() {
+fun CurationCardItem(
+    item: CurationItemUiModel
+) {
+    val context = LocalContext.current
+
     Column(
         modifier = Modifier
             .background(Color.White)
@@ -127,13 +137,13 @@ fun CurationCardItem() {
             )
         }
         Text(
-            text = "Nike", modifier = Modifier
+            text = item.title, modifier = Modifier
                 .background(Color.White)
                 .padding(start = 4.dp)
                 .fillMaxWidth()
         )
         Text(
-            text = "15,000원", modifier = Modifier
+            text = item.price.toFormattedPriceString(context), modifier = Modifier
                 .background(Color.White)
                 .padding(start = 4.dp)
                 .fillMaxWidth()

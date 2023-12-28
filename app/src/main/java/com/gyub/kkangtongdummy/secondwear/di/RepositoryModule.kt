@@ -1,10 +1,10 @@
 /*
  * Copyright ⓒ 2011 HelloMarket Inc. All Rights Reserved.
  */
-package com.gyub.kkangtongdummy.secondware.di
+package com.gyub.kkangtongdummy.secondwear.di
 
-import com.gyub.kkangtongdummy.secondware.data.CurationRepositoryImpl
-import com.gyub.kkangtongdummy.secondware.domain.CurationRepository
+import com.gyub.kkangtongdummy.secondwear.data.CurationRepositoryImpl
+import com.gyub.kkangtongdummy.secondwear.domain.CurationRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
