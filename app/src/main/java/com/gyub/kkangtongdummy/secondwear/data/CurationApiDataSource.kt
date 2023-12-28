@@ -19,7 +19,7 @@ constructor(
      *
      * @return 큐레이션 아이템
      */
-    suspend fun getCurationItems(): CurationItemsResponse {
+    suspend fun getCurationItems(): List<CurationItemResponse> {
         return curationService.getCurationItems()
     }
 }

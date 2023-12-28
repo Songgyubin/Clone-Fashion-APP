@@ -35,7 +35,6 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.gyub.kkangtongdummy.R
 import com.gyub.kkangtongdummy.secondwear.model.CurationItemUiModel
@@ -88,7 +87,7 @@ fun CurationItemListPreview() {
 
 @Composable
 fun CurationItemList(
-    secondWearViewModel: SecondWearViewModel = hiltViewModel()
+    secondWearViewModel: SecondWearViewModel = viewModel()
 ) {
     LazyHorizontalGrid(
         rows = GridCells.Fixed(2),
@@ -99,7 +98,7 @@ fun CurationItemList(
             .fillMaxWidth()
             .height(curationCardItemHeight * 2 + 14.dp)
     ) {
-        items(secondWearViewModel.curationItem.value.items) {
+        items(secondWearViewModel.curationItem.value) {
             CurationCardItem(it)
         }
     }
@@ -107,7 +106,7 @@ fun CurationItemList(
 
 @Composable
 fun CurationCardItem(
-    item: CurationItemUiModel.ItemUiModel
+    item: CurationItemUiModel
 ) {
     val context = LocalContext.current
 

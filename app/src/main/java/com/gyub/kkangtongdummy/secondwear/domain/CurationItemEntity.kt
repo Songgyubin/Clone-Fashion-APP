@@ -9,12 +9,8 @@ package com.gyub.kkangtongdummy.secondwear.domain
  * @author   Gyul
  * @created  2023/12/23
  */
-data class CurationItemsEntity(
-    val items: List<ItemEntity>?
-) {
-    data class ItemEntity(
-        val itemIdx: String?,
-        val title: String?,
-        val price: Int?
-    )
-}
+data class CurationItemEntity(
+    val itemIdx: String?,
+    val title: String?,
+    val price: Int?
+)

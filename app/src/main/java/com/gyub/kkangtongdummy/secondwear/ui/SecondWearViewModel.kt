@@ -1,5 +1,6 @@
 package com.gyub.kkangtongdummy.secondwear.ui
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gyub.kkangtongdummy.secondwear.domain.GetCurationItemsUseCase
@@ -22,7 +23,7 @@ class SecondWearViewModel @Inject constructor(
     private val getCurationItemsUseCase: GetCurationItemsUseCase
 ) : ViewModel() {
 
-    private val _curationItem = MutableStateFlow<CurationItemUiModel>(CurationItemUiModel())
+    private val _curationItem = MutableStateFlow<List<CurationItemUiModel>>(listOf())
     val curationItem = _curationItem.asStateFlow()
 
     init {
@@ -37,6 +38,7 @@ class SecondWearViewModel @Inject constructor(
             getCurationItemsUseCase()
                 .collect {
                     _curationItem.value = it.toUiModel()
+                    Log.d("TAG", " - :${curationItem.value} ")
                 }
         }
     }

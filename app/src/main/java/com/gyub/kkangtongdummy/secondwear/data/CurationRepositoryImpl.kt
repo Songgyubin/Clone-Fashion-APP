@@ -3,7 +3,7 @@
  */
 package com.gyub.kkangtongdummy.secondwear.data
 
-import com.gyub.kkangtongdummy.secondwear.domain.CurationItemsEntity
+import com.gyub.kkangtongdummy.secondwear.domain.CurationItemEntity
 import com.gyub.kkangtongdummy.secondwear.domain.CurationRepository
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -26,7 +26,7 @@ constructor(
      *
      * @return 큐레이션 아이템
      */
-    override suspend fun getCurationItems(): CurationItemsEntity {
+    override suspend fun getCurationItems(): List<CurationItemEntity> {
         return curationApiDataSource.getCurationItems().toEntity()
     }
 }

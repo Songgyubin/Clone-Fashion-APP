@@ -22,7 +22,7 @@ constructor(
     private val curationRepository: CurationRepository,
     @IoDispatcher private val ioDispatcher: CoroutineDispatcher
 ) {
-    operator fun invoke(): Flow<CurationItemsEntity> = flow {
+    operator fun invoke(): Flow<List<CurationItemEntity>> = flow {
         val item = curationRepository.getCurationItems()
         emit(item)
     }.flowOn(ioDispatcher)

@@ -13,5 +13,5 @@ interface CurationRepository {
      *
      * @return 큐레이션 아이템
      */
-    suspend fun getCurationItems(): CurationItemsEntity
+    suspend fun getCurationItems(): List<CurationItemEntity>
 }

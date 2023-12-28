@@ -17,5 +17,5 @@ interface CurationService {
      * @return 큐레이션 아이템
      */
     @GET("${ApiInfo.VERSION}/curation/items")
-    suspend fun getCurationItems(): CurationItemsResponse
+    suspend fun getCurationItems(): List<CurationItemResponse>
 }
