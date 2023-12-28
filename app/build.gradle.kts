@@ -3,6 +3,8 @@ import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -30,11 +32,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
         freeCompilerArgs += "-opt-in=androidx.compose.material3.ExperimentalMaterial3Api"
     }
     buildFeatures {
@@ -47,9 +49,22 @@ android {
     packaging.resources {
         // Multiple dependency bring these files in. Exclude them to enable
         // our test APK to build (has no effect on our AARs)
-        excludes += "/META-INF/AL2.0"
-        excludes += "/META-INF/LGPL2.1"
-        excludes += "META-INF/gradle/incremental.annotation.processors"
+        mutableSetOf(
+            "META-INF/LICENSE.txt", // META-INF 디렉터리에 있는 LICENSE.txt 파일을 제외합니다.
+            "META-INF/LICENSE", // META-INF 디렉터리에 있는 LICENSE 파일을 제외합니다.
+            "META-INF/NOTICE.txt", // META-INF 디렉터리에 있는 NOTICE.txt 파일을 제외합니다.
+            "META-INF/NOTICE", // META-INF 디렉터리에 있는 NOTICE 파일을 제외합니다.
+            "META-INF/ASL2.0", // META-INF 디렉터리에 있는 ASL2.0 파일을 제외합니다.
+            "META-INF/DEPENDENCIES", // META-INF 디렉터리에 있는 DEPENDENCIES 파일을 제외합니다.
+            "META-INF/maven/com.google.guava/guava/pom.properties", // META-INF/maven/com.google.guava/guava/ 디렉터리에 있는 pom.properties 파일을 제외합니다.
+            "META-INF/maven/com.google.guava/guava/pom.xml", // META-INF/maven/com.google.guava/guava/ 디렉터리에 있는 pom.xml 파일을 제외합니다.
+            "META-INF/rxjava.properties", // META-INF 디렉터리에 있는 rxjava.properties 파일을 제외합니다.
+            ".readme", // .readme 파일을 제외합니다.
+            "/META-INF/LGPL2.1"
+        )
+//        excludes +=
+//        excludes += "/META-INF/AL2.0"
+//        excludes += "META-INF/gradle/incremental.annotation.processors"
     }
 }
 
@@ -65,7 +80,7 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling.preivew)
     implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.navigation.compose)
-    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
+    implementation(libs.androidx.hilt.navigation.compose)
 
     implementation(libs.okhttp3)
     implementation(libs.retrofit2)
@@ -74,7 +89,7 @@ dependencies {
     implementation(libs.okhttp3.logging.interceptor)
 
     implementation(libs.dagger.hilt)
-    implementation(libs.dagger.hilt.compiler)
+    kapt(libs.dagger.hilt.compiler)
 
     testImplementation(libs.test.junit)
     androidTestImplementation(libs.android.test.androidx.ext.junit)
@@ -87,3 +102,4 @@ dependencies {
     debugImplementation(libs.debug.androidx.compose.ui.tooling)
     debugImplementation(libs.debug.androidx.compose.ui.test.manifest)
 }
+fun DependencyHandler.kapt(dependencyNotation: Any): Dependency? = add("kapt", dependencyNotation)
